@@ -77,7 +77,6 @@ jobs:
           file: ./dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
-          no-cashe: true
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.7
@@ -92,6 +91,6 @@ jobs:
             # sudo docker run -d --name nestjs-app -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
             cd /home/ubuntu/n15
             sudo docker compose down
-            sudo docker system prune -af  # Barcha keraksiz containerlar va imagelarni o'chirish
+            sudo docker system prune -af  
             sudo docker compose pull
             sudo docker compose up -d --force-recreate

@@ -86,8 +86,13 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             # docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
-            sudo docker stop nestjs-app || true
-            sudo docker rm nestjs-app || true
-            sudo docker run -d --name nestjs-app -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
+            # sudo docker stop nestjs-app || true
+            # sudo docker rm nestjs-app || true
+            # sudo docker run -d --name nestjs-app -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
+            cd /home/ubuntu/n15
+            sudo docker compose pull
+            sudo docker compose down
+            sudo docker compose up -d --force-recreate
+            sudo docker image prune -a -f
 
-            
+

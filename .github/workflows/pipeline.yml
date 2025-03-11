@@ -86,6 +86,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             # docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
-            docker stop nestjs-app || true
-            docker rm nestjs-app || true
-            docker compose up
+            sudo docker stop nestjs-app || true
+            sudo docker rm nestjs-app || true
+            sudo docker compose up

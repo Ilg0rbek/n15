@@ -12,6 +12,7 @@ services:
       - "5432:5432"
 
   app:
+    container_name: nestjs-app
     build: .
     image: ilgorbek/nestjs-app
     depends_on:

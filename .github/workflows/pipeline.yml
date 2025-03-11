@@ -88,5 +88,4 @@ jobs:
             # docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
             sudo docker stop nestjs-app || true
             sudo docker rm nestjs-app || true
-            cd /home/ubuntu/n15
-            sudo docker compose up
+            sudo docker run -d --name nestjs-app -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app

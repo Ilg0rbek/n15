@@ -74,9 +74,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: ./dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.7
@@ -85,7 +85,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app:latest
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
             docker stop nestjs-app || true
             docker rm nestjs-app || true
-            docker run -d --name nestjs-app -p 3000:3000 --env-file .env ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app:latest
+            docker run -d --name nestjs-app -p 3000:3000 --env-file .env ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
